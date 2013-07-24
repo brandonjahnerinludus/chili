@@ -59,56 +59,24 @@ end
 # orders of magnitude compared to their native counterparts. You have been
 # warned.
 
-platforms :mri, :mingw, :rbx do
-  group :mysql2 do
-    gem "mysql2", "~> 0.2.7"
-  end
+  #added by brandon then below commented out
 
-  group :postgres do
-    gem "pg"
-    #   gem "postgres-pr"
-  end
+  gem "pg"
+
+  # group :postgres do
+  #   gem "pg"
+  #   #   gem "postgres-pr"
+  # end
 end
 
-platforms :mri_18, :mingw_18 do
-  group :mysql do
-    gem "mysql"
-    #   gem "ruby-mysql"
-  end
 
-  group :sqlite do
-    gem "sqlite3-ruby", "< 1.3", :require => "sqlite3"
-  end
-end
-
-platforms :mri_19, :mingw_19, :rbx do
-  group :sqlite do
-    gem "sqlite3"
-  end
-end
-
-platforms :jruby do
-  gem "jruby-openssl"
-
-  group :mysql do
-    gem "activerecord-jdbcmysql-adapter"
-  end
-
-  group :postgres do
-    gem "activerecord-jdbcpostgresql-adapter"
-  end
-
-  group :sqlite do
-    gem "activerecord-jdbcsqlite3-adapter"
-  end
-end
 
 # Load a "local" Gemfile
-gemfile_local = File.join(File.dirname(__FILE__), "Gemfile.local")
-if File.readable?(gemfile_local)
-  puts "Loading #{gemfile_local} ..." if $DEBUG
-  instance_eval(File.read(gemfile_local))
-end
+# gemfile_local = File.join(File.dirname(__FILE__), "Gemfile.local")
+# if File.readable?(gemfile_local)
+#   puts "Loading #{gemfile_local} ..." if $DEBUG
+#   instance_eval(File.read(gemfile_local))
+# end
 
 # Load plugins' Gemfiles
 ["plugins", "chiliproject_plugins"].each do |plugin_path|
