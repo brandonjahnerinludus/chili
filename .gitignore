@@ -1,11 +1,5 @@
 /.project
 /.loadpath
-/config/additional_environment.rb
-/config/configuration.yml
-/config/database.yml
-/config/email.yml
-/config/setup_load_paths.rb
-/config/initializers/session_store.rb
 /coverage
 /db/*.db
 /db/*.sqlite3
