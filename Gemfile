@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 source "https://rubygems.org"
-ruby "1.9.3"
+ruby "1.8.7"
 
 gem "rails", "2.3.18"
 
