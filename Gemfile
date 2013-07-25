@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 source "https://rubygems.org"
-ruby "1.9.3"
 
 gem "rails", "2.3.18"
 
@@ -15,7 +14,6 @@ gem 'gravatarify', '~> 3.0.0'
 # Needed only on RUBY_VERSION = 1.8, ruby 1.9+ compatible interpreters should bring their csv
 gem "fastercsv", "~> 1.5.0", :platforms => [:ruby_18, :jruby, :mingw_18]
 gem "tzinfo", "~> 0.3.31" # Fixes #903. Not required for Rails >= 3.2
-gem 'unicorn'
 
 group :test do
   gem 'shoulda', '~> 2.10.3'
@@ -76,7 +74,16 @@ platforms :mri_18, :mingw_18 do
     #   gem "ruby-mysql"
   end
 
+  group :sqlite do
+    gem "sqlite3-ruby", "< 1.3", :require => "sqlite3"
+  end
+end
 
+platforms :mri_19, :mingw_19, :rbx do
+  group :sqlite do
+    gem "sqlite3"
+  end
+end
 
 platforms :jruby do
   gem "jruby-openssl"
