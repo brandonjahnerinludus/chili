@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
-source 'https://rubygems.org'
-
-ruby '1.9.3' 
-gem 'foreman'
-
+source "https://rubygems.org"
+ruby "1.9.3"
 
 gem "rails", "2.3.18"
 
@@ -62,24 +59,47 @@ end
 # orders of magnitude compared to their native counterparts. You have been
 # warned.
 
-  #added by brandon then below commented out
+platforms :mri, :mingw, :rbx do
+  group :mysql2 do
+    gem "mysql2", "~> 0.2.7"
+  end
 
-  gem "pg"
-
-  # group :postgres do
-  #   gem "pg"
-  #   #   gem "postgres-pr"
-  # end
+  group :postgres do
+    gem "pg"
+    #   gem "postgres-pr"
+  end
 end
 
+platforms :mri_18, :mingw_18 do
+  group :mysql do
+    gem "mysql"
+    #   gem "ruby-mysql"
+  end
 
+
+
+platforms :jruby do
+  gem "jruby-openssl"
+
+  group :mysql do
+    gem "activerecord-jdbcmysql-adapter"
+  end
+
+  group :postgres do
+    gem "activerecord-jdbcpostgresql-adapter"
+  end
+
+  group :sqlite do
+    gem "activerecord-jdbcsqlite3-adapter"
+  end
+end
 
 # Load a "local" Gemfile
-# gemfile_local = File.join(File.dirname(__FILE__), "Gemfile.local")
-# if File.readable?(gemfile_local)
-#   puts "Loading #{gemfile_local} ..." if $DEBUG
-#   instance_eval(File.read(gemfile_local))
-# end
+gemfile_local = File.join(File.dirname(__FILE__), "Gemfile.local")
+if File.readable?(gemfile_local)
+  puts "Loading #{gemfile_local} ..." if $DEBUG
+  instance_eval(File.read(gemfile_local))
+end
 
 # Load plugins' Gemfiles
 ["plugins", "chiliproject_plugins"].each do |plugin_path|
